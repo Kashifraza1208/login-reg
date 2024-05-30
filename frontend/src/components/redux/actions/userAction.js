@@ -29,7 +29,7 @@ export const login = (email, password, navigate) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `http://localhost:8000/api/v1/login`,
+      `/api/v1/login`,
       { email, password },
       config
     );
@@ -55,7 +55,7 @@ export const register =
       const config = { headers: { "Content-Type": "application/json" } };
 
       const { data } = await axios.post(
-        `http://localhost:8000/api/v1/register`,
+        `/api/v1/register`,
         { name, dateOfBirth, email, password },
         config
       );
@@ -78,7 +78,7 @@ export const register =
 // Logout User
 export const logout = (navigate) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`http://localhost:8000/api/v1/logout`);
+    const { data } = await axios.get(`/api/v1/logout`);
     if (data.success === true) {
       localStorage.removeItem("isAuthenticated");
       navigate("/login");
@@ -93,7 +93,7 @@ export const logout = (navigate) => async (dispatch) => {
 export const getAllUsers = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_USERS_REQUEST });
-    const { data } = await axios.get(`http://localhost:8000/api/v1/users`);
+    const { data } = await axios.get(`/api/v1/users`);
 
     dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
   } catch (error) {
